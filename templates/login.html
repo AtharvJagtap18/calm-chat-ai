@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Login - CalmChat</title>
+
+  <!-- Google Font for cursive style -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='login_style.css') }}" />
+</head>
+<body>
+  <div class="split-container">
+    <!-- Left Illustration Section (background handled in CSS) -->
+    <div class="illustration"></div>
+
+    <!-- Right Login Section -->
+    <div class="right-section">
+      <!-- Welcome Banner -->
+      <div class="welcome-container">
+        <h1 class="welcome-text">Welcome</h1>
+        <h2 class="calmchat-text">CalmChat</h2>
+      </div>
+
+      <div class="login-container">
+        <h2>Login to CalmChat</h2>
+        {% if error %}
+          <div class="error">{{ error }}</div>
+        {% endif %}
+        <form method="post" action="{{ url_for('login') }}">
+          <input type="text" name="username" placeholder="Username" required />
+          <input type="password" name="password" placeholder="Password" required />
+          <button type="submit">Login</button>
+        </form>
+       <!-- <p>Test user: <strong>test</strong> / password: <strong>testpass</strong></p> -->
+      </div>
+
+      <!-- NGO Info -->
+      <p class="ngo-info">
+        National Tele Mental Health Programme (Tele MANAS): 
+        <a href="tel:14416">14416</a> / 
+        <a href="tel:18008914416">1800-89-14416</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

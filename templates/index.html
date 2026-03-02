@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CalmChat</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />      
+  <style>
+    .music-btn.active {
+      background-color: #4caf50;
+      color: white;
+      border-radius: 6px;
+      box-shadow: 0 0 10px #4caf50;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background animation -->
+  <img src="{{ url_for('static', filename='background.gif') }}" alt="background" id="bg-gif">
+  
+  <!-- ===== Navbar ===== -->
+  <nav class="site-nav">
+    <div class="nav-container">
+      <div class="nav-brand">CalmChat</div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Chat</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== Chat UI ===== -->
+  <div class="chat-container">
+    <!-- Header with Dark Mode + Music Toggle -->
+    <div class="chat-header">
+      CalmChat
+      <div class="header-buttons">
+        <button id="musicToggle" class="music-btn">🎵</button>
+        <button id="darkModeToggle" class="dark-toggle">🌙</button>
+      </div>
+    </div>
+
+    <!-- Messages Area -->
+    <div id="messages" class="messages">
+      <div class="message bot">
+        👋 Hello! What language would you like to speak?
+      </div>
+      <div class="language-options">
+        <button class="lang-btn" data-lang="English">English</button>
+        <button class="lang-btn" data-lang="Hindi">हिंदी</button>
+        <button class="lang-btn" data-lang="Marathi">मराठी</button>
+        <button class="lang-btn" data-lang="Spanish">Español</button>
+      </div>
+    </div>
+
+    <!-- Input + Buttons -->
+    <div class="input-area">
+      <input id="user-input" type="text" placeholder="Type your message..." autocomplete="off"/>
+      <button id="sendBtn" type="button">Send</button>
+      <button id="micBtn" type="button">🎤</button>
+    </div>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <p>© 2025 CalmChat • Built with ❤️</p>
+  </footer>
+
+  <!-- ===== Background music ===== -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="{{ url_for('static', filename='calm-music.mp3') }}" type="audio/mpeg">
+  </audio>
+
+  <!-- ===== Chatbot logic ===== -->
+  <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
+
+  <!-- ===== Music logic ===== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const bgMusic = document.getElementById("bg-music");
+      const musicToggle = document.getElementById("musicToggle");
+      const langButtons = document.querySelectorAll(".lang-btn");
+
+      // Default low volume (20%)
+      const DEFAULT_VOLUME = 0.2;
+      bgMusic.volume = DEFAULT_VOLUME;
+
+      // Smooth fade-in
+      function fadeInAudio(audio, targetVolume = DEFAULT_VOLUME, step = 0.05, interval = 200) {
+        audio.volume = 0;
+        audio.play().catch(err => console.error("Play error:", err));
+        const fade = setInterval(() => {
+          if (audio.volume < targetVolume) {
+            audio.volume = Math.min(audio.volume + step, targetVolume);
+          } else {
+            clearInterval(fade);
+          }
+        }, interval);
+      }
+
+      // Toggle music button
+      musicToggle.addEventListener("click", () => {
+        if (bgMusic.paused) {
+          fadeInAudio(bgMusic, DEFAULT_VOLUME);
+          musicToggle.textContent = "🔊"; 
+          musicToggle.classList.add("active");
+        } else {
+          bgMusic.pause();
+          musicToggle.textContent = "🎵"; 
+          musicToggle.classList.remove("active");
+        }
+      });
+
+      // Auto-start when language is chosen
+      langButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          if (bgMusic.paused) {
+            fadeInAudio(bgMusic, DEFAULT_VOLUME);
+            musicToggle.textContent = "🔊"; 
+            musicToggle.classList.add("active");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
