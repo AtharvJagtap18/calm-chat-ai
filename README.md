@@ -48,7 +48,7 @@ calm-chat-ai
 │   ├── chatbot.js        # Chat interaction logic
 │   ├── style.css         # Main styling
 │   ├── login_style.css   # Login page styling
-│   └── calm-music.mp3    # Relaxing background music
+│   └── calm-music.mp3    # Relaxing background music(not uploaded here)
 │   └── background.gif
 ```
 
