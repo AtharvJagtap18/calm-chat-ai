@@ -31,23 +31,26 @@ The application demonstrates how conversational AI can be integrated into a ligh
 ---
 
 ## Project Structure
+
+```
 calm-chat-ai
 │
-├── app.py # Flask backend server
-├── bot.py # Chatbot response logic
-├── requirements.txt # Python dependencies
-├── users.db # SQLite database for user login
+├── app.py                # Flask backend server
+├── bot.py                # Chatbot response logic
+├── requirements.txt      # Python dependencies
+├── users.db              # SQLite database for user login
 │
 ├── templates
-│ ├── index.html # Chat interface
-│ ├── login.html # Login page
-│ └── background.gif
+│   ├── index.html        # Chat interface
+│   ├── login.html        # Login page
+│   └── background.gif
 │
 ├── static
-│ ├── chatbot.js # Chat interaction logic
-│ ├── style.css # Main styling
-│ ├── login_style.css # Login page styling
-│ └── calm-music.mp3 # Relaxing background music
+│   ├── chatbot.js        # Chat interaction logic
+│   ├── style.css         # Main styling
+│   ├── login_style.css   # Login page styling
+│   └── calm-music.mp3    # Relaxing background music
+```
 
 ---
 
